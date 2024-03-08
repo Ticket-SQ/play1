@@ -233,6 +233,28 @@ public class FastTags {
         if (actionDef == null) {
             actionDef = (ActionDefinition) args.get("action");
         }
+        String optionalParameters = "";
+        String classTag = (String) args.get("class");
+        if (classTag == null) {
+            classTag = "";
+        } else
+        {
+            optionalParameters+= " class=\"" + classTag + "\"";
+        }
+        String idTag = (String) args.get("id");
+        if (idTag == null) {
+            idTag = "";
+        } else
+        {
+            optionalParameters+= " id=\"" + idTag + "\"";
+        }
+        String dataToggle = (String) args.get("data-toggle");
+        if (dataToggle == null) {
+            dataToggle = "";
+        } else
+        {
+            optionalParameters+= " data-toggle=\"" + dataToggle + "\"";
+        }
         if (!("GET".equals(actionDef.method))) {
             if (!("POST".equals(actionDef.method))) {
                 String separator = actionDef.url.indexOf('?') != -1 ? "&" : "?";
@@ -249,7 +271,7 @@ public class FastTags {
             out.print(JavaExtensions.toString(body));
             out.print("</a>");
         } else {
-            out.print("<a href=\"" + actionDef.url + "\" " + serialize(args, "href") + ">");
+            out.print("<a " + optionalParameters + " href=\"" + actionDef.url + "\" " + serialize(args, "href") + ">");
             out.print(JavaExtensions.toString(body));
             out.print("</a>");
         }
