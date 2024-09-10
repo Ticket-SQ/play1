@@ -17,7 +17,7 @@ public class Lang {
     static final ThreadLocal<String> current = new ThreadLocal<>();
 
     private static Map<String, Locale> cache = new HashMap<>();
-    
+
     /**
      * Retrieve the current language or null
      *
@@ -104,7 +104,8 @@ public class Lang {
         for (String a : desiredLocales) {
             a = a.replace("-", "_");
             cleanLocales.add(a);
-            for (String locale : Play.langs) {
+            ArrayList<String> PlayLocales = (ArrayList<String>)Play.langs;
+            for (String locale : PlayLocales) {
                 if (locale.equalsIgnoreCase(a)) {
                     return locale;
                 }
@@ -200,12 +201,12 @@ public class Lang {
         }
 
         Locale result = cache.get(localeStr);
-        
+
         if (result == null) {
             result = findLocale(localeStr);
             cache.put(localeStr, result);
         }
-        
+
         return result;
     }
 

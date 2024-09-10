@@ -105,7 +105,7 @@ public class Http {
 
         /**
          * First value
-         * 
+         *
          * @return The first value
          */
         public String value() {
@@ -186,7 +186,7 @@ public class Http {
         public String querystring;
         /**
          * URL path (excluding scheme, host and port), starting with '/'<br>
-         * 
+         *
          * <b>Example:</b><br>
          * With this full URL <code>http://localhost:9000/path0/path1</code>
          * <br>
@@ -317,10 +317,28 @@ public class Http {
         }
 
         /**
+         * Get a response header
+         *
+         * @param name
+         *            Header name case-insensitive
+         * @return the header value as a String
+         */
+        public String getHeader(String name) {
+            for (String key : headers.keySet()) {
+                if (key.toLowerCase().equals(name.toLowerCase())) {
+                    if (headers.get(key) != null) {
+                        return headers.get(key).value();
+                    }
+                }
+            }
+            return null;
+        }
+
+        /**
          * All creation / initiating of new requests should use this method. The
          * purpose of this is to "show" what is needed when creating new
          * Requests.
-         * 
+         *
          * @return the newly created Request object
          */
         public static Request createRequest(String _remoteAddress, String _method, String _path, String _querystring, String _contentType,
@@ -496,7 +514,7 @@ public class Http {
 
         /**
          * Retrieve the current request
-         * 
+         *
          * @return the current request
          */
         public static Request current() {
@@ -505,7 +523,7 @@ public class Http {
 
         /**
          * Useful because we sometime use a lazy request loader
-         * 
+         *
          * @return itself
          */
         public Request get() {
@@ -525,7 +543,7 @@ public class Http {
 
         /**
          * Get the request base (ex: http://localhost:9000
-         * 
+         *
          * @return the request base of the url (protocol, host and port)
          */
         public String getBase() {
@@ -642,7 +660,7 @@ public class Http {
 
         /**
          * Retrieve the current response
-         * 
+         *
          * @return the current response
          */
         public static Response current() {
@@ -651,7 +669,7 @@ public class Http {
 
         /**
          * Get a response header
-         * 
+         *
          * @param name
          *            Header name case-insensitive
          * @return the header value as a String
@@ -669,7 +687,7 @@ public class Http {
 
         /**
          * Set a response header
-         * 
+         *
          * @param name
          *            Header name
          * @param value
@@ -691,7 +709,7 @@ public class Http {
 
         /**
          * Set a new cookie
-         * 
+         *
          * @param name
          *            Cookie name
          * @param value
@@ -703,7 +721,7 @@ public class Http {
 
         /**
          * Removes the specified cookie with path /
-         * 
+         *
          * @param name
          *            cookie name
          */
@@ -713,7 +731,7 @@ public class Http {
 
         /**
          * Removes the cookie
-         * 
+         *
          * @param name
          *            cookie name
          * @param path
@@ -725,7 +743,7 @@ public class Http {
 
         /**
          * Set a new cookie that will expire in (current) + duration
-         * 
+         *
          * @param name
          * @param value
          * @param duration
@@ -767,7 +785,7 @@ public class Http {
 
         /**
          * Add a cache-control header
-         * 
+         *
          * @param duration
          *            Ex: 3h
          */
@@ -778,7 +796,7 @@ public class Http {
 
         /**
          * Add cache-control headers
-         * 
+         *
          * @param duration
          *            Ex: 3h
          */
@@ -794,7 +812,7 @@ public class Http {
          * browsers don't support these features and will ignore the headers.
          * Refer to the browsers' documentation to know what versions support
          * them.
-         * 
+         *
          * @param allowOrigin
          *            a comma separated list of domains allowed to perform the
          *            x-domain call, or "*" for all.
@@ -808,7 +826,7 @@ public class Http {
          * browsers don't support these features and will ignore the headers.
          * Refer to the browsers' documentation to know what versions support
          * them.
-         * 
+         *
          * @param allowOrigin
          *            a comma separated list of domains allowed to perform the
          *            x-domain call, or "*" for all.
@@ -826,7 +844,7 @@ public class Http {
          * browsers don't support these features and will ignore the headers.
          * Refer to the browsers' documentation to know what versions support
          * them.
-         * 
+         *
          * @param allowOrigin
          *            a comma separated list of domains allowed to perform the
          *            x-domain call, or "*" for all.
